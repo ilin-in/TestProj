@@ -29,12 +29,6 @@ class LocationsViewModel {
         if realmLocations.count == 0 {
             appendInitialData()
         }
-        
-        Observable.combineLatest(locationManager.rx.didUpdateLocations.map { $0[0] }
-            .filter { $0.horizontalAccuracy < kCLLocationAccuracyHundredMeters}, locations) { (coords, locs) -> String in
-                print(1)
-                return ""
-        }.subscribe().disposed(by: disposeBag)
     }
     
     func addNewLocation(name: String, lat: Double, lng: Double) {
