@@ -29,6 +29,6 @@ class BundleExtractor {
                 }
             }
             return Disposables.create()
-        })
+        }).observeOn(SerialDispatchQueueScheduler(qos: .userInteractive))
     }
 }
