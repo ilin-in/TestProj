@@ -22,13 +22,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -33.795905, longitude: 151.211848)
-
-//        mapView.rx.didAddAnnotationViews.asDriver().drive(onNext: { annotations in
-//            if annotations.count > 0 {
-//                let visibleRegion = self.mapView.convert(self.mapView.annotationVisibleRect, toRegionFrom: annotations.first?.superview)
-//                self.mapView.setRegion(visibleRegion, animated: true)
-//            }
-//        }).disposed(by: disposeBag)
         
         viewModel.locations.map { $0.map({ location in
             let annotation = MKPointAnnotation()
