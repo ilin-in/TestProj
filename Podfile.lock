@@ -1,0 +1,50 @@
+PODS:
+  - ObjectMapper (3.1.0)
+  - Realm (3.1.0):
+    - Realm/Headers (= 3.1.0)
+  - Realm/Headers (3.1.0)
+  - RealmSwift (3.1.0):
+    - Realm (= 3.1.0)
+  - RxBlocking (4.1.1):
+    - RxSwift (~> 4.0)
+  - RxCocoa (4.1.1):
+    - RxSwift (~> 4.0)
+  - RxGesture (1.2.1):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxMKMapView (4.0.0):
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
+  - RxRealm (0.7.5):
+    - RealmSwift (~> 3.0)
+    - RxSwift (~> 4.0)
+  - RxSwift (4.1.1)
+  - RxTest (4.1.1):
+    - RxSwift (~> 4.0)
+
+DEPENDENCIES:
+  - ObjectMapper (~> 3.1)
+  - RealmSwift
+  - RxBlocking (~> 4.0)
+  - RxCocoa (~> 4.0)
+  - RxGesture
+  - RxMKMapView
+  - RxRealm
+  - RxSwift (~> 4.0)
+  - RxTest (~> 4.0)
+
+SPEC CHECKSUMS:
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  Realm: 09513d7c054678d65cd02ce09871f805b0d758ac
+  RealmSwift: e868fee9b10e5490ad94b6b6ecd9027944da1824
+  RxBlocking: 22e7d7b86a1c0c42164a30d64f56f97128b4ffab
+  RxCocoa: fd0862fd2df95fa55562ad28ffd2522c25eb4a85
+  RxGesture: c278eb05b187abd47e11e65464ae4de53ab71d95
+  RxMKMapView: 5cd47305a35e6dbf8bceb7713280060950203188
+  RxRealm: a6c6c0a07cb61f34209969ca6657734edfdfff30
+  RxSwift: c6e3b1c7b325c7d121cd4327e9d98b7ed746b570
+  RxTest: f934010a5b07ecd627cb70b38eb4baf0414591d2
+
+PODFILE CHECKSUM: bb11b66bc74db2ca421a54aaea623664435e2ef0
+
+COCOAPODS: 1.4.0
