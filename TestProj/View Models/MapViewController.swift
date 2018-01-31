@@ -43,8 +43,6 @@ class MapViewController: UIViewController {
     
     @objc func didLongPressOnMap(sender: UILongPressGestureRecognizer) {
         guard sender.state == .ended else  { return }
-        
-        print("longpressed")
         let location = self.mapView.convert(sender.location(in: self.mapView), toCoordinateFrom: self.mapView)
         showLocationNameRequest(location: location)
     }
