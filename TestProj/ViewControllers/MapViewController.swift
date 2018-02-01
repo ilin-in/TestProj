@@ -23,12 +23,15 @@ class MapViewController: UIViewController {
         
         mapView.centerCoordinate = CLLocationCoordinate2D(latitude: -33.795905, longitude: 151.211848)
         
-        viewModel.locations.map { $0.map({ location in
-            let annotation = MKPointAnnotation()
-            annotation.title = location.name
-            annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
-            return annotation
-        })}
+        viewModel.locations.map { results in
+            self.mapView.removeAnnotations(self.mapView.annotations)
+            return results.map({ location in
+                let annotation = MKPointAnnotation()
+                annotation.title = location.name
+                annotation.coordinate = CLLocationCoordinate2D(latitude: location.lat, longitude: location.lng)
+                return annotation
+            }
+        )}
         .bind(to: mapView.rx.annotations).disposed(by: disposeBag)
         
         mapView.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(didLongPressOnMap(sender:))))
@@ -49,9 +52,7 @@ class MapViewController: UIViewController {
             }
         })
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel)
-        alertController.addTextField { (textField : UITextField!) -> Void in
-            textField.placeholder = NSLocalizedString("Location name", comment: "")
-        }
+        alertController.addTextField { $0.placeholder = NSLocalizedString("Location name", comment: "") }
         alertController.addAction(saveAction)
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true)

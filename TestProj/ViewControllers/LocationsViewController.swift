@@ -13,14 +13,13 @@ import RxSwift
 class LocationsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    var viewModel: LocationsViewModel? = nil
+    lazy var viewModel: LocationsViewModel = LocationsViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        viewModel = LocationsViewModel()
-        viewModel?.locations.bind(to: tableView.rx.items) { tv, ip, element in
+        viewModel.locations.bind(to: tableView.rx.items) { tv, ip, element in
             let cell = tv.dequeueReusableCell(withIdentifier: "locationCell") as! LocationTableViewCell
             cell.location = element
             return cell

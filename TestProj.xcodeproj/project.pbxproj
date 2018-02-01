@@ -134,6 +134,8 @@
 		6704FF2C202081E900DDC956 /* TestProj */ = {
 			isa = PBXGroup;
 			children = (
+				6730E133202301D100BBCCD2 /* Views */,
+				6730E132202301BA00BBCCD2 /* ViewControllers */,
 				6704FF5E202082C500DDC956 /* View Models */,
 				6704FF5D202082B800DDC956 /* Models */,
 				6704FF5F202083E000DDC956 /* Services */,
@@ -178,10 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				6709BA7520209DCD004F8AA7 /* LocationsViewModel.swift */,
-				6709BA772020A4A7004F8AA7 /* LocationsViewController.swift */,
-				6709BA792020B01B004F8AA7 /* LocationTableViewCell.swift */,
-				67FF3B78202194E0002CC3BE /* MapViewController.swift */,
-				67FF3B7A2021CA7B002CC3BE /* NoteViewController.swift */,
 				67FF3B7C2021CA83002CC3BE /* NoteViewModel.swift */,
 			);
 			path = "View Models";
@@ -202,6 +200,24 @@
 				6704FF6520208D6900DDC956 /* RxCLLocationManagerDelegateProxy.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		6730E132202301BA00BBCCD2 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6709BA772020A4A7004F8AA7 /* LocationsViewController.swift */,
+				67FF3B78202194E0002CC3BE /* MapViewController.swift */,
+				67FF3B7A2021CA7B002CC3BE /* NoteViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		6730E133202301D100BBCCD2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6709BA792020B01B004F8AA7 /* LocationTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		8F713B73FFDE43341D5E2BEA /* Frameworks */ = {
