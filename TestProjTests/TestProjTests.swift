@@ -32,9 +32,7 @@ class TestProjTests: XCTestCase {
     func testExtractingLocations() {
         let itemsExpectation = expectation(description: "Extract locations")
         let disposeBag = DisposeBag()
-        self.measure {
-            _ = LocationsViewModel()
-        }
+        let _ = LocationsViewModel()
         let realm = try! Realm()
         Observable.collection(from: realm.objects(Location.self)).skip(1).subscribe(onNext: { results in
             XCTAssert(results.count > 0)
