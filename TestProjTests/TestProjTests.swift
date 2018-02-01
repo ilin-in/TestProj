@@ -10,6 +10,7 @@ import XCTest
 import RealmSwift
 import RxSwift
 import RxRealm
+import CoreLocation
 @testable import TestProj
 
 class TestProjTests: XCTestCase {
@@ -33,10 +34,8 @@ class TestProjTests: XCTestCase {
         let disposeBag = DisposeBag()
         self.measure {
             let locationsViewModel = LocationsViewModel()
-            locationsViewModel.locations.subscribe(onNext: { (results) in
-                if results.count > 0 {
-                    itemsExpectation.fulfill()
-                }
+            locationsViewModel.locations.filter({ $0.count > 0 }) .subscribe(onNext: { (results) in
+                itemsExpectation.fulfill()
             }).disposed(by: disposeBag)
         }
         
@@ -56,13 +55,27 @@ class TestProjTests: XCTestCase {
         
         let updateNoteExpectation = expectation(description: "Update note")
         let disposeBag = DisposeBag()
-        Observable.from(object: realm.object(ofType: Location.self, forPrimaryKey: locationName)!).subscribe( onNext: { (location) in
-            if location.note == testNote {
-                updateNoteExpectation.fulfill()
-            }
+        Observable.from(object: realm.object(ofType: Location.self, forPrimaryKey: locationName)!, emitInitialValue: false).subscribe( onNext: { (location) in
+            XCTAssert(location.note == testNote)
+            updateNoteExpectation.fulfill()
         }).disposed(by: disposeBag)
         let viewModel = NoteViewModel(locationName: locationName)
         viewModel.updateNote(newNote: testNote)
         wait(for: [updateNoteExpectation], timeout: 4)
+    }
+    
+    func testAddNewLocation() {
+        let locationName = "Test name"
+        let locationCoords = CLLocationCoordinate2D(latitude: -33.897233, longitude: 151.193440)
+        
+        let locationsViewModel = LocationsViewModel()
+        locationsViewModel.addNewLocation(name: locationName, lat: locationCoords.latitude, lng: locationCoords.longitude)
+        
+        let realm = try! Realm()
+        let location = realm.object(ofType: Location.self, forPrimaryKey: locationName)
+        XCTAssertNotNil(location)
+        XCTAssertEqual(location?.name, locationName)
+        XCTAssertEqual(location?.lat, locationCoords.latitude)
+        XCTAssertEqual(location?.lng, locationCoords.longitude)
     }
 }
