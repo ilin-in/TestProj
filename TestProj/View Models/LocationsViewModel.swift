@@ -43,7 +43,7 @@ class LocationsViewModel {
             location.distanceString = LocationsViewModel.distanceFormat(distance: location.distance)
         }
         try! realm.write {
-            realm.add(location)
+            realm.add(location, update: true)
         }
     }
     
