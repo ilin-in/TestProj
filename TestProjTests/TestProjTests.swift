@@ -33,12 +33,14 @@ class TestProjTests: XCTestCase {
         let itemsExpectation = expectation(description: "Extract locations")
         let disposeBag = DisposeBag()
         self.measure {
-            let locationsViewModel = LocationsViewModel()
-            locationsViewModel.locations.filter({ $0.count > 0 }) .subscribe(onNext: { (results) in
-                itemsExpectation.fulfill()
-            }).disposed(by: disposeBag)
+            _ = LocationsViewModel()
         }
-        
+        let realm = try! Realm()
+        Observable.collection(from: realm.objects(Location.self)).skip(1).subscribe(onNext: { results in
+            XCTAssert(results.count > 0)
+            itemsExpectation.fulfill()
+        }).disposed(by: disposeBag)
+    
         wait(for: [itemsExpectation], timeout: 4)
     }
     
